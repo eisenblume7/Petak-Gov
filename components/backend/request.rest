@@ -1,0 +1,26 @@
+GET http://localhost:5000/projects
+
+###
+GET http://localhost:5000/projects/2
+
+###
+POST http://localhost:5000/projects
+Content-Type: application/json
+
+{
+  "name": "Taman",
+  "location": "Mulyosari",
+}
+
+###
+PATCH http://localhost:5000/projects/2
+Content-Type: application/json
+
+{
+  "name": "Taman God Complex",
+  "location": "Sutorejo"
+}
+
+###
+DELETE http://localhost:5000/projects/2
+Content-Type: application/json
