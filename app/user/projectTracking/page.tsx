@@ -1,52 +1,39 @@
 import { PrismaClient } from "@prisma/client";
-import AddProduct from "./addProduct";
-import DeleteProduct from "./deleteProduct";
-import UpdateProduct from "./updateProduct";
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
+import DeleteFav from "./deleteFav";
+import UserLayout from "@/components/Layouts/UserLayout";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 const prisma = new PrismaClient();
 
 
-const getProject = async () => {
-  const res = await prisma.project.findMany({
+const getProjectTracking = async () => {
+  const res = await prisma.projectTracking.findMany({
     select:{
       id: true,
-      name: true,
-      location: true,
-      kategori: true,
-      ownerId: true,
-      owner: true,
-      status: true,
+      projectId: true,
+      Project: true,
+      penggunaId: true,
+      Pengguna: true,
     }
   });
   return res;
 };
 
-const getOwner = async () => {
-  const res = await prisma.owner.findMany();
+const getProject = async () => {
+  const res = await prisma.project.findMany();
   return res;
 };
 
-const getKategori = async () => {
-  const res = await prisma.kategori.findMany();
-  return res;
-};
-
-const getStatus = async () => {
-  const res = await prisma.status.findMany();
+const getPengguna = async () => {
+  const res = await prisma.pengguna.findMany();
   return res;
 };
 
 const Project = async () => {
-  const [project, owner, kategori, status] = await Promise.all([getProject(), getOwner(), getKategori(), getStatus()]);
+  const [projectTracking, project, pengguna, status] = await Promise.all([getProject(), getOwner(), getKategori(), getStatus()]);
 
   return (
-      <DefaultLayout>
+      <UserLayout>
         <div className="flex flex-col">
-          <div
-              className="mb-2 rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark ">
-            <AddProduct owners={owner} kategories={kategori} statuses={status}/>
-          </div>
 
           <table
               className="table rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark ">
@@ -79,7 +66,7 @@ const Project = async () => {
             </tbody>
           </table>
         </div>
-      </DefaultLayout>
+      </UserLayout>
   );
 };
 

@@ -1,35 +1,35 @@
 
 import { Metadata } from "next";
+import UserLayout from "@/components/Layouts/UserLayout";
+import Userdash from "@/components/Dashboard/Userdash";
 import {getServerSession} from "next-auth";
 import {authOptions} from "@/lib/auth";
 import Link from "next/link";
 import React from "react";
 import {Button} from "reactstrap";
-import ECommerce from "@/components/Dashboard/E-commerce";
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
 export const metadata: Metadata = {
-    title:
-        "PetakGOV Admin Dashboard",
-    description: "Admin Dashboard",
+  title:
+    "PetakGOV User Dashboard",
+  description: "User Dashboard",
 };
 
 const Home = async () => {
     const session = await getServerSession(authOptions);
     console.log(session?.user.username)
 
-    if (session?.user.role == "admin") {
+    if (session?.user.role) {
         return (
             <>
-                <DefaultLayout>
-                    <ECommerce />
-                </DefaultLayout>
+                <UserLayout>
+                    <Userdash />
+                </UserLayout>
             </>
         )
     } else {
         return (
             <div className={"flex items-center justify-center h-screen mb-12 bg-white bg-center bg-cover"}>
-                <h2 className={"p-2 text-black text-2xl"}>Forbidden (403)</h2>
+                <h2 className={"p-2 text-black text-2xl"}>Please login to see this page</h2>
                 <button>
                     <li className=' text-2xl font-bold flex text-rose-600 p-4 margin-left border-blue-600'>
                         <Link href='/'>Go Back</Link>

@@ -19,6 +19,16 @@ body {
   background-color: #5cdb95;
 }
 
+.fullscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  background: lime; /* Just to visualize the extent */
+}
+
 @layer utilities {
   .btn_white {
     @apply border-white bg-white px-8 py-3 text-green-50

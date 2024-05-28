@@ -8,29 +8,29 @@ import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import AddUser from "@/app/auth/signup/addUser";
 
 export const metadata: Metadata = {
-  title: "Next.js SignUp Page | TailAdmin - Next.js Dashboard Template",
-  description: "This is Next.js SignUp Page TailAdmin Dashboard Template",
+  title: "Petak Gov SignUp Page ",
+  description: "This is Petak Gov SignUp Page",
   // other metadata
 };
 
 const SignUp: React.FC = () => {
   return (
     <div>
-      <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+      <div className="absolute top-0 left-0 right-0 bottom-0rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-white">
         <div className="flex flex-wrap items-center">
           <div className="hidden w-full xl:block xl:w-1/2">
             <div className="px-26 py-17.5 text-center">
               <Link className="mb-5.5 inline-block" href="/">
                 <Image
                   className="hidden dark:block"
-                  src={"/images/logo/logo.svg"}
+                  src={"/2.svg"}
                   alt="Logo"
                   width={176}
                   height={32}
                 />
                 <Image
                   className="dark:hidden"
-                  src={"/images/logo/logo-dark.svg"}
+                  src={"/2.svg"}
                   alt="Logo"
                   width={176}
                   height={32}

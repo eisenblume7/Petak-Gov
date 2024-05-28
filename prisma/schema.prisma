@@ -32,24 +32,37 @@ model status {
 }
 
 model Project {
-  id               Int      @id @default(autoincrement())
+  id               Int               @id @default(autoincrement())
   name             String
   location         String
-  kategori         kategori @relation(fields: [kategoriId], references: [id])
+  kategori         kategori          @relation(fields: [kategoriId], references: [id])
   kategoriId       Int
-  owner            owner    @relation(fields: [ownerId], references: [id])
+  owner            owner             @relation(fields: [ownerId], references: [id])
   ownerId          Int
-  status           status   @relation(fields: [statusId], references: [id])
+  status           status            @relation(fields: [statusId], references: [id])
   statusId         Int
-  TanggalPembuatan DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  imageUrl         String?
+  TanggalPembuatan DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  projectTracking  ProjectTracking[]
 }
 
 model Pengguna {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  name      String
-  password  String
-  createdAt DateTime @default(now())
-  updateAt  DateTime @updatedAt
+  id              Int               @id @default(autoincrement())
+  email           String            @unique
+  name            String
+  password        String
+  role            String            @default("user")
+  createdAt       DateTime          @default(now())
+  updateAt        DateTime          @updatedAt
+  projectTracking ProjectTracking[]
+}
+
+model ProjectTracking {
+  id         Int      @id @default(autoincrement())
+  Project    Project  @relation(fields: [projectId], references: [id])
+  projectId  Int
+  Pengguna   Pengguna @relation(fields: [penggunaId], references: [id])
+  penggunaId Int
+  createdAt  DateTime @default(now())
 }

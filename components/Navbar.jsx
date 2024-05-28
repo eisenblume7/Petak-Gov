@@ -1,14 +1,22 @@
+
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { buttonVariants } from './button';
 import { HandMetal } from 'lucide-react';
+import {Button} from "reactstrap";
+import {signOut, useSession} from "next-auth/react";
+import DashboardButton from "./DashboardButton";
 
-const Navbar = () => {
+const Navbar =  () => {
+  const { data: session} = useSession()
   const [nav, setNav] = useState(false);
   const [color, setColor] = useState('transparent');
   const [textColor, setTextColor] = useState('white');
 
+  const handleSignOut = async () => {
+    await signOut({ redirect: false, callbackUrl: '/' });
+  };
   const handleNav = () => {
     setNav(!nav);
   };
@@ -42,18 +50,29 @@ const Navbar = () => {
               <Link href='/'>Home</Link>
             </li>
             <li className='p-4'>
-              <Link href='/'>Maps</Link>
+              <Link href='/projectDisplay'>Project</Link>
             </li>
             <li className='p-4'>
               <Link href='/#about'>About</Link>
             </li>
             <li className='p-4'>
-              <Link href='/'>My Profile</Link>
-            </li>
-            <li className='flex p-4 margin-left'>
-              <Link href='/admin/auth/signin'>Sign in</Link>
+              <DashboardButton/>
             </li>
           </ul>
+
+          <div style={{color: `${textColor}`}} className='hidden sm:flex'>
+            {session?.user ? (
+                <li>
+                  <button onClick={handleSignOut}>Sign Out</button>
+                </li>
+            ) : (
+                <li>
+                  <Link href="/api/auth/signin">
+                    Sign In
+                  </Link>
+                </li>
+            )}
+          </div>
 
           {/* Mobile Button */}
           <div onClick={handleNav} className='block sm:hidden z-10'>
@@ -85,7 +104,7 @@ const Navbar = () => {
                 <Link href='/contact'>My Profile</Link>
               </li>
               <li onClick={handleNav} className='p-4 text-4xl hover:text-gray-500'>
-                <Link className={buttonVariants()} href='/authform'>
+                <Link className={buttonVariants()} href='/api/auth/signin'>
                   Sign in
                 </Link>
               </li>

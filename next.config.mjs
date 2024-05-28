@@ -3,6 +3,6 @@ const nextConfig = {};
 
 export default {
     images: {
-        domains: ['images.unsplash.com']
+        domains: ['images.unsplash.com', 'epxgowjhwkykyqalncmq.supabase.co']
     }
 }

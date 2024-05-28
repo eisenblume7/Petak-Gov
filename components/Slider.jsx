@@ -1,7 +1,8 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { SliderData } from './SliderData';
 import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa';
+import axios from "axios";
 
 const Slider = ({ slides }) => {
   const [current, setCurrent] = useState(0);
@@ -13,6 +14,16 @@ const Slider = ({ slides }) => {
   const prevSlide = () => {
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
+
+    const [projects, setProjects] = useState([]);
+
+    useEffect(() => {
+        async function fetchProjects() {
+            const response = await axios.get('/api/project');
+            setProjects(response.data);
+        }
+        fetchProjects();
+    }, []);
 
   if (!Array.isArray(slides) || slides.length <= 0) {
     return null;
@@ -44,7 +55,7 @@ const Slider = ({ slides }) => {
           </div>
           <div className='relative flex justify-center p-4'>
 
-          {SliderData.map((slide, index) => {
+          {projects.map((project, index) => {
                   return (
                       <div
                           key={index}
@@ -61,7 +72,7 @@ const Slider = ({ slides }) => {
                           />
                           {index === current && (
                               <Image
-                                  src={slide.image}
+                                  src={project.imageUrl}
                                   alt='/'
                                   width='1440'
                                   height='600'

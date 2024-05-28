@@ -1,28 +1,27 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import type { Project } from "@prisma/client";
+import type { ProjectTracking } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export const PATCH = async (request: Request, {params}: {params: {id: string}}) =>{
-    const body: Project = await request.json();
-    const product = await prisma.project.update({
+    const body: ProjectTracking = await request.json();
+    const projecTracking = await prisma.projectTracking.update({
         where:{
             id: Number(params.id)
         },
         data:{
-            name: body.name,
-            location: body.location,
-            ownerId: body.ownerId
+            projectId: body.projectId,
+            penggunaId: body.penggunaId,
         }
     });
-    return NextResponse.json(product, {status: 200});
+    return NextResponse.json(projecTracking, {status: 200});
 }
 
 export const DELETE = async (request: Request, {params}: {params: {id: string}}) =>{
-    const product = await prisma.project.delete({
+    const projectTracking = await prisma.projectTracking.delete({
         where:{
             id: Number(params.id)
         }
     });
-    return NextResponse.json(product, {status: 200});
+    return NextResponse.json(projectTracking, {status: 200});
 }

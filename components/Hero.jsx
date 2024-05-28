@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from "next/image";
+import Link from "next/link";
 
 const Hero = ({heading, message}) => {
   return (
@@ -17,7 +18,9 @@ const Hero = ({heading, message}) => {
 
                 <h2 className='text-8xl font-bold'>{heading}</h2>
                 <p className='py-5 text-3xl'>{message}</p>
-                <button className='px-12 py-4 border text-2xl'>Start</button>
+                <Link href='/projectDisplay'>
+                    <button className='px-12 py-4 border text-2xl'>Start</button>
+                </Link>
             </div>
         </div>
     </div>

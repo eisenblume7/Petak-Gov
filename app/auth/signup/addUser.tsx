@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, SyntheticEvent } from "react";
 import type { Pengguna } from "@prisma/client";
-
 import { useRouter } from 'next/navigation';
 import axios from "axios";
 import Link from "next/link";
@@ -12,23 +11,23 @@ const AddUser = () => {
   const [password, setPassword] = useState("" );
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
   const router = useRouter();
+
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    await axios.post("/api/signup", {
+    const response = await axios.post("/api/user", {
       name: name,
       email: email,
-      password: password,
+      password: password
     });
+    router.push("/auth/signin")
     setIsLoading(false);
     setName("");
     setEmail("");
     setPassword("");
     router.refresh();
     setIsOpen(false);
-
   };
 
   const handleModal = () => {
@@ -197,7 +196,7 @@ const AddUser = () => {
             <div className="mt-6 text-center">
               <p className="text-black">
                 Already have an account?{" "}
-                <Link href="/auth/signin" className="text-primary">
+                <Link href="/api/auth/signin" className="text-primary">
                   Sign in
                 </Link>
               </p>

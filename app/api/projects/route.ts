@@ -16,3 +16,4 @@ export const POST = async (request: Request) =>{
     });
     return NextResponse.json(project, {status: 201});
 }
+
