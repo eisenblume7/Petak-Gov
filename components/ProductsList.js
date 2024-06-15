@@ -21,7 +21,7 @@ export default function ProductsList() {
                     key={project.id}
                     className="border rounded-lg bg-gray-100 hover:shadow-lg shadow-md"
                 >
-                    <Link href={'/projectDisplay'}>
+                    <Link href={`/ProjectDetail/${project.id}`}>
                             <div className="bg-white">
                                 <div className="rounded-t-lg mx-auto">
                                     <NextImage src={project.imageUrl} style={{objectFit: "fill"}} width={575} height={200} />
