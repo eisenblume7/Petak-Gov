@@ -10,9 +10,21 @@ type Project = {
   id: number;
   name: string;
   location: string;
-  kategoriId: string;
+  kategoriId: number; // Change from string to number
   ownerId: number;
-  statusId: string;
+  statusId: number;
+  kategori: {
+    id: number;
+    name: string;
+  };
+  owner: {
+    id: number;
+    name: string;
+  };
+  status: {
+    id: number;
+    name: string;
+  };
 };
 
 const UpdateProduct = ({

@@ -1,5 +1,4 @@
 // pages/dashboard/index.js
-import { useSession } from 'next-auth/react';
 import Sidenav from "../../components/SideNav"
 import Project from "../../app/admin/projects/page"
 

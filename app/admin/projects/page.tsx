@@ -15,6 +15,8 @@ const getProject = async () => {
       location: true,
       kategori: true,
       ownerId: true,
+      kategoriId: true,
+      statusId: true,
       owner: true,
       status: true,
     }
@@ -40,6 +42,8 @@ const getStatus = async () => {
 const Project = async () => {
   const [project, owner, kategori, status] = await Promise.all([getProject(), getOwner(), getKategori(), getStatus()]);
 
+
+  // @ts-ignore
   return (
       <DefaultLayout>
         <div className="flex flex-col">

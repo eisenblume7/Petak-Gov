@@ -4,7 +4,6 @@ import Image from "next/image";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 
 import { Metadata } from "next";
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import AddUser from "@/app/auth/signup/addUser";
 
 export const metadata: Metadata = {

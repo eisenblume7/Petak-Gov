@@ -1,8 +1,28 @@
 "use client";
 import { useState, SyntheticEvent } from "react";
 import { useRouter } from 'next/navigation';
-import type { Project } from "@prisma/client";
 import axios from "axios";
+
+type Project = {
+  id: number;
+  name: string;
+  location: string;
+  kategoriId: number; // Change from string to number
+  ownerId: number;
+  statusId: number;
+  kategori: {
+    id: number;
+    name: string;
+  };
+  owner: {
+    id: number;
+    name: string;
+  };
+  status: {
+    id: number;
+    name: string;
+  };
+};
 
 const DeleteProduct = ({ project }: { project: Project }) => {
   const [isOpen, setIsOpen] = useState(false);
