@@ -16,10 +16,10 @@ const Hero = ({heading, message}) => {
             />
             <div className='p-5 text-cream-30 z-[3] mt-[0rem]'>
 
-                <h2 className='text-8xl font-bold text-cream-30'>{heading}</h2>
-                <p className='py-5 text-3xl text-cream-30'>{message}</p>
+                <h2 className='text-8xl font-bold text-white'>{heading}</h2>
+                <p className='py-5 text-3xl text-white'>{message}</p>
                 <Link href='/projectDisplay'>
-                    <button className='px-12 py-4 border text-2xl text-cream-30'>Start</button>
+                    <button className='px-12 py-4 border text-2xl text-white'>Start</button>
                 </Link>
             </div>
         </div>
